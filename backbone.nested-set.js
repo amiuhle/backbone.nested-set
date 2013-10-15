@@ -3,24 +3,23 @@
 
 Backbone.NestedSet = (function (Backbone) {
 
-  var slice = [].slice;
+  var CollectionExtension = {
 
-  var root = null;
-  
-  var Collection = Backbone.Collection.extend({
+    _root: null,
 
     root: function(value) {
       if(value === undefined) {
-        return root;
+        return this._root;
       } else {
         if(value === +value) {
           value = this.get(value);
         }
-        root = value;
+        this._root = value;
       }
     },
 
     each: function(iterator) {
+      var root = this._root;
       var rgt = 0;
       if(root) {
         console.log('root', root);
@@ -33,20 +32,12 @@ Backbone.NestedSet = (function (Backbone) {
           rgt = model.get('rgt');
         }
       })
-    },
-
-    tree: function(root, iterator) {
-      
     }
 
-  });
-
-  var Model = Backbone.Model.extend({
-
-  });
+  };
 
   return {
-    Collection: Collection,
-    Model: Model
+    CollectionExtension: CollectionExtension,
+    Collection: Backbone.Collection.extend(CollectionExtension)
   };
 })(Backbone);
