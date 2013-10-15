@@ -5,25 +5,25 @@ module.exports = function (grunt) {
     jasmine: {
       test: {
         src: [
-          'backbone-vanilla-js-objects.js'
+          'backbone.nested-set.js'
         ],
         options: {
           vendor: [
-            'components/jquery/jquery.js',
-            'components/underscore/underscore.js',
-            'components/backbone/backbone.js'
+            'bower_components/jquery/jquery.js',
+            'bower_components/underscore/underscore.js',
+            'bower_components/backbone/backbone.js'
           ],
           helpers: [
-            'components/jasmine-jquery/lib/jasmine-jquery.js'
+            
           ],
-          specs: ['test/backbone-vanilla-js-objects.js'],
+          specs: ['test/spec/*.js'],
           keepRunner: true
         }
       }
     },
     watch: {
       test: {
-        files: ['*.js', ['test/*.js']],
+        files: ['*.js', ['test/spec/*.js']],
         tasks: ['jasmine:test'],
         options: {
           nospawn: true
