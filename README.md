@@ -42,3 +42,24 @@ all the _Nested Set_ goodies you would expect:
 _.extend(MyExistingCollection.prototype, Backbone.NestedSet.CollectionExtension);
 ```
 
+## Documentation
+
+### `root()`
+`root` is a jQuery-like hybrid method to get or retrieve the currently set _root_
+Object. It defaults to `null`.
+
+```javascript
+collection.root();
+# => null
+collection.root(1);
+# set root to Model with id=1
+```
+
+### `each()`
+Currently, the only affected method by `root` is `each`. If you loop through
+the Models of a Collection using `each`, you will only get the direct children
+of `root`:
+
+```javascript
+
+```
