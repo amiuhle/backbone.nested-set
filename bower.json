@@ -1,0 +1,16 @@
+{
+  "name": "backbone.nested-set",
+  "version": "0.0.0",
+  "authors": [
+    "Timo Uhlmann <timouhlmann@googlemail.com>"
+  ],
+  "description": "'Nested Set Model' for Backbone.Collections",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
