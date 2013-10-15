@@ -3,7 +3,9 @@
 
 (function () {
   describe('Backbone.NestedSet', function () {
-    var data;
+    var data,
+      nodeCount,
+      countNodes;
     beforeEach(function() {
       data = [
         {
@@ -37,18 +39,17 @@
           rgt: 11
         }
       ];
+
+      nodeCount = 0;
+      countNodes = function() {
+        nodeCount++;
+      };
     });
 
     describe('Collection', function() {
-      var collection,
-        nodeCount,
-        countNodes;
+      var collection;
       beforeEach(function() {
         collection = new Backbone.NestedSet.Collection(data);
-        nodeCount = 0;
-        countNodes = function() {
-          nodeCount++;
-        }
       });
 
       it('is a collection', function() {
@@ -71,6 +72,47 @@
         collection.each(countNodes);
         expect(nodeCount).toBe(1);
       });
+    });
+
+    describe("_.extend", function() {
+      var MyCollection,
+        collection;
+
+      beforeEach(function() {
+        MyCollection = Backbone.Collection.extend({
+          foo: function() {
+            return 'bar';
+          }
+        });
+        _.extend(MyCollection.prototype, Backbone.NestedSet.CollectionExtension);
+        collection = new MyCollection(data);
+      });
+
+      it('preserves existing functions', function() {
+        expect(collection.foo()).toBe('bar');
+      });
+
+      it('is a collection', function() {
+        expect(collection).toEqual(jasmine.any(Backbone.Collection));
+      });
+
+      it('exposes root nodes by default', function() {
+        collection.each(countNodes);
+        expect(nodeCount).toBe(2);
+      });
+
+      it('allows getting child nodes by parent id', function() {
+        collection.root(3);
+        collection.each(countNodes);
+        expect(nodeCount).toBe(1);
+      });
+
+      it('allows getting child nodes by parent model', function() {
+        collection.root(collection.get(3));
+        collection.each(countNodes);
+        expect(nodeCount).toBe(1);
+      });
+
     });
   });
 })();
