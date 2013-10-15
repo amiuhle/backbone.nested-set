@@ -7,5 +7,10 @@
     "test": "grunt test"
   },
   "author": "Timo Uhlmann <timouhlmann@googlemail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jasmine": "~0.4.1",
+    "grunt-contrib-watch": ""
+  }
 }
