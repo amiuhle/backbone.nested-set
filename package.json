@@ -1,0 +1,11 @@
+{
+  "name": "backbone.nested-set",
+  "version": "0.0.0",
+  "description": "'Nested Set Model' for Backbone.Collections",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Timo Uhlmann <timouhlmann@googlemail.com>",
+  "license": "MIT"
+}
