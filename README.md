@@ -55,17 +55,18 @@ var data = [
   { id: 5,  lft: 9,   rgt: 12 },
   { id: 6,  lft: 10,  rgt: 11 }
 ];
+var collection = new Backbone.NestedSet.Collection(data);
 ```
 
 ### `root()`
 `root` is a jQuery-like hybrid method to get or retrieve the currently set _root_
-Object. It defaults to `null`.
+Object. It defaults to `null`. You can set the root by an id or a `Model`.
 
 ```javascript
 collection.root();
-# => null
+// => null
 collection.root(1);
-# set root to Model with id=1
+// set root to Model with id=1
 ```
 
 ### `each()`
@@ -74,5 +75,14 @@ the Models of a Collection using `each`, you will only get the direct children
 of `root`:
 
 ```javascript
+collection.each(function(model) {
+  console.log(model.id);
+});
+// => 1, 5
 
+collection.root(3); // you can also supply a model instead of an id
+collection.each(function(model) {
+  console.log(model.id);
+});
+// => 4
 ```
