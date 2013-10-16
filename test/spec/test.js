@@ -8,36 +8,12 @@
       countNodes;
     beforeEach(function() {
       data = [
-        {
-          id: 1,
-          lft: 1,
-          rgt: 8
-        },
-        {
-          id: 2,
-          lft: 2,
-          rgt: 3
-        },
-        {
-          id: 3,
-          lft: 4,
-          rgt: 7
-        },
-        {
-          id: 4,
-          lft: 5,
-          rgt: 6
-        },
-        {
-          id: 5,
-          lft: 9,
-          rgt: 12
-        },
-        {
-          id: 6,
-          lft: 10,
-          rgt: 11
-        }
+        { id: 1,  lft: 1,   rgt: 8 },
+        { id: 2,  lft: 2,   rgt: 3 },
+        { id: 3,  lft: 4,   rgt: 7 },
+        { id: 4,  lft: 5,   rgt: 6 },
+        { id: 5,  lft: 9,   rgt: 12 },
+        { id: 6,  lft: 10,  rgt: 11 }
       ];
 
       nodeCount = 0;

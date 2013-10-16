@@ -44,6 +44,19 @@ _.extend(MyExistingCollection.prototype, Backbone.NestedSet.CollectionExtension)
 
 ## Documentation
 
+Lewt's assume the following datafor this section:
+
+```
+var data = [
+  { id: 1,  lft: 1,   rgt: 8 },
+  { id: 2,  lft: 2,   rgt: 3 },
+  { id: 3,  lft: 4,   rgt: 7 },
+  { id: 4,  lft: 5,   rgt: 6 },
+  { id: 5,  lft: 9,   rgt: 12 },
+  { id: 6,  lft: 10,  rgt: 11 }
+];
+```
+
 ### `root()`
 `root` is a jQuery-like hybrid method to get or retrieve the currently set _root_
 Object. It defaults to `null`.
