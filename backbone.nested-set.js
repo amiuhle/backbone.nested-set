@@ -3,9 +3,11 @@
 
 Backbone.NestedSet = (function (Backbone) {
 
+  var slice = Array.prototype.slice;
+
   var CollectionExtension = {
 
-    treeEach: function(root, iterator) {
+    treeEach: function(root, iterator, context) {
       if(typeof root === 'string') {
         root = parseInt(root, 10);
       }
@@ -20,12 +22,12 @@ Backbone.NestedSet = (function (Backbone) {
         rgt = root.get('lft');
       }
 
-      Backbone.Collection.prototype.each.call(this, function(model) {
+      this.each(function(model) {
         if(model.get('lft') === rgt + 1) {
-          iterator.call(this, model);
+          iterator.call(context, model);
           rgt = model.get('rgt');
         }
-      });
+      }, this);
     }
 
   };
