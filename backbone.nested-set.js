@@ -1,26 +1,20 @@
-/*global _, Backbone */
+/*global Backbone */
 'use strict';
 
 Backbone.NestedSet = (function (Backbone) {
 
   var CollectionExtension = {
 
-    _root: null,
-
-    root: function(value) {
-      if(value === undefined) {
-        return this._root;
-      } else {
-        if(value === +value) {
-          value = this.get(value);
-        }
-        this._root = value;
+    treeEach: function(root, iterator) {
+      if(typeof root === 'string') {
+        root = parseInt(root, 10);
       }
-    },
-
-    each: function(iterator) {
-      var root = this._root;
+      if(root === +root) {
+        root = this.get(root);
+      }
+      console.log('treeEach', root);
       var rgt = 0;
+      
       if(root) {
         console.log('root', root);
         rgt = root.get('lft');
@@ -31,7 +25,7 @@ Backbone.NestedSet = (function (Backbone) {
           iterator.call(this, model);
           rgt = model.get('rgt');
         }
-      })
+      });
     }
 
   };
