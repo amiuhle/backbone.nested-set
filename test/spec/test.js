@@ -1,4 +1,4 @@
-/*global describe, it */
+/*global describe, it, expect, beforeEach, jasmine, Backbone, _ */
 'use strict';
 
 (function () {
@@ -6,6 +6,7 @@
     var data,
       nodeCount,
       countNodes;
+    
     beforeEach(function() {
       data = [
         { id: 1,  lft: 1,   rgt: 8 },
@@ -50,7 +51,7 @@
       });
     });
 
-    describe("_.extend", function() {
+    describe('_.extend', function() {
       var MyCollection,
         collection;
 
