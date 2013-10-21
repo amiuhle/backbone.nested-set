@@ -1,4 +1,4 @@
-/*global describe, it */
+/*global describe, it, expect, beforeEach, jasmine, Backbone, _ */
 'use strict';
 
 (function () {
@@ -6,6 +6,7 @@
     var data,
       nodeCount,
       countNodes;
+    
     beforeEach(function() {
       data = [
         { id: 1,  lft: 1,   rgt: 8 },
@@ -32,25 +33,29 @@
         expect(collection).toEqual(jasmine.any(Backbone.Collection));
       });
 
-      it('exposes root nodes by default', function() {
-        collection.each(countNodes);
+      it('exposes root nodes', function() {
+        collection.treeEach(null, countNodes);
         expect(nodeCount).toBe(2);
       });
 
       it('allows getting child nodes by parent id', function() {
-        collection.root(3);
-        collection.each(countNodes);
+        collection.treeEach(3, countNodes);
+        expect(nodeCount).toBe(1);
+      });
+
+      it('converts strings to numbers', function() {
+        collection.treeEach('3', countNodes);
         expect(nodeCount).toBe(1);
       });
 
       it('allows getting child nodes by parent model', function() {
-        collection.root(collection.get(3));
-        collection.each(countNodes);
+        collection.treeEach(collection.get(3), countNodes);
         expect(nodeCount).toBe(1);
       });
+
     });
 
-    describe("_.extend", function() {
+    describe('_.extend', function() {
       var MyCollection,
         collection;
 
@@ -72,20 +77,23 @@
         expect(collection).toEqual(jasmine.any(Backbone.Collection));
       });
 
-      it('exposes root nodes by default', function() {
-        collection.each(countNodes);
+      it('exposes root nodes', function() {
+        collection.treeEach(null, countNodes);
         expect(nodeCount).toBe(2);
       });
 
       it('allows getting child nodes by parent id', function() {
-        collection.root(3);
-        collection.each(countNodes);
+        collection.treeEach(3, countNodes);
+        expect(nodeCount).toBe(1);
+      });
+
+      it('converts strings to numbers', function() {
+        collection.treeEach('3', countNodes);
         expect(nodeCount).toBe(1);
       });
 
       it('allows getting child nodes by parent model', function() {
-        collection.root(collection.get(3));
-        collection.each(countNodes);
+        collection.treeEach(collection.get(3), countNodes);
         expect(nodeCount).toBe(1);
       });
 

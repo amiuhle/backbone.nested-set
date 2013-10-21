@@ -1,37 +1,33 @@
-/*global _, Backbone */
+/*global Backbone */
 'use strict';
 
 Backbone.NestedSet = (function (Backbone) {
 
+  var slice = Array.prototype.slice;
+
   var CollectionExtension = {
 
-    _root: null,
-
-    root: function(value) {
-      if(value === undefined) {
-        return this._root;
-      } else {
-        if(value === +value) {
-          value = this.get(value);
-        }
-        this._root = value;
+    treeEach: function(root, iterator, context) {
+      if(typeof root === 'string') {
+        root = parseInt(root, 10);
       }
-    },
-
-    each: function(iterator) {
-      var root = this._root;
+      if(root === +root) {
+        root = this.get(root);
+      }
+      console.log('treeEach', root);
       var rgt = 0;
+      
       if(root) {
         console.log('root', root);
         rgt = root.get('lft');
       }
 
-      Backbone.Collection.prototype.each.call(this, function(model) {
+      this.each(function(model) {
         if(model.get('lft') === rgt + 1) {
-          iterator.call(this, model);
+          iterator.call(context, model);
           rgt = model.get('rgt');
         }
-      })
+      }, this);
     }
 
   };
